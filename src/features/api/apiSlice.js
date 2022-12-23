@@ -9,7 +9,7 @@ export const donorApi = createApi({
         getDonor: builder.query({
             query: () => ({
                 method: 'GET',
-                url: 'donor'
+                url: 'donor',
             })
         })
     })
