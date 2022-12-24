@@ -5,6 +5,7 @@ import AllDonor from '../Pages/Dashboard/AllDonor';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import EditDonor from '../Pages/Dashboard/EditDonor';
 import Donors from '../Pages/Donor/Donors';
+import SelectedDonors from '../Pages/SelectedDonors/SelectedDonors';
 import Navbar from '../Pages/Shared/Navbar';
 
 const Index = () => {
@@ -13,6 +14,7 @@ const Index = () => {
             <Navbar />
             <Routes>
                 <Route path='/' element={<Donors />} />
+                <Route path='/contacts' element={<SelectedDonors />} />
                 <Route path='/dashboard' element={<Dashboard />} >
                     <Route index element={<AllDonor />} />
                     <Route path='add-donor' element={<AddDonor />} />

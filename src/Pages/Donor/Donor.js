@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addDonor, removeDonor } from '../../features/donor/donorSlice';
 import Loading from '../Shared/Loading';
 
 const Donor = ({ donor }) => {
-    const { name, division, district, upazila, contact, bloodGroup, imageUrl } = donor;
+    const { name, division, district, upazila, contact, bloodGroup, imageUrl, _id } = donor || {};
 
     const [divisionName, setDivisionName] = useState('');
     const [districtName, setDistrictName] = useState('');
     const [upazilaName, setUpazilaName] = useState('');
 
+    const donors = useSelector(state => state.donor.donors);
+    const dispatch = useDispatch();
+
+    const exist = donors.find(donor => donor._id === _id);
 
     useEffect(() => {
         fetch('division.json')
@@ -35,11 +41,16 @@ const Donor = ({ donor }) => {
                     <h1 class="text-xl font-bold">{name}</h1>
                     <p>{contact}</p>
                     <p className='font-bold text-red-500'>{bloodGroup.toUpperCase()}</p>
-                    <p>Division:{division}</p>
-                    <p>District:{district}</p>
-                    <p>Upazila:{upazila}</p>
+                    <p>Division:{divisionName}</p>
+                    <p>District:{districtName}</p>
+                    <p>Upazila:{upazilaName}</p>
                 </div>
-                <button class="btn btn-primary">Select For Contact</button>
+                {
+                    !exist ?
+                        <button onClick={() => dispatch(addDonor(donor))} class="btn btn-primary">Select For Contact</button>
+                        :
+                        <button onClick={() => dispatch(removeDonor(donor))} class="btn bg-red-500 text-white border-0">Remove From Selected Contact</button>
+                }
             </div>
         </div>
     );
