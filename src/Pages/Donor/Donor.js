@@ -38,8 +38,8 @@ const Donor = ({ donor }) => {
                     <p>Division:{division}</p>
                     <p>District:{district}</p>
                     <p>Upazila:{upazila}</p>
-                    <button class="btn btn-primary">Select For Contact</button>
                 </div>
+                <button class="btn btn-primary">Select For Contact</button>
             </div>
         </div>
     );
