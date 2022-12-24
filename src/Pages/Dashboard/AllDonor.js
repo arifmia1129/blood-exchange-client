@@ -5,9 +5,9 @@ import SingleDonor from './SingleDonor';
 
 
 const AllDonor = () => {
-    const { data, error, isLoading } = useGetDonorQuery();
+    const { data, error, isLoading } = useGetDonorQuery(null);
 
-    console.log(data);
+
 
     if (isLoading) {
         return <Loading />

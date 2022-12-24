@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { AiFillDelete } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { useDeleteDonorMutation } from '../../features/api/apiSlice';
+import Loading from '../Shared/Loading';
 
 const SingleDonor = ({ donor }) => {
     const { name, division, district, upazila, bloodGroup, contact, imageUrl, _id } = donor;
+
+
+    const [deleteDonor, { isSuccess, isLoading, isError }] = useDeleteDonorMutation();
+
+    const dispatch = useDispatch();
 
     const [divisionName, setDivisionName] = useState('');
     const [districtName, setDistrictName] = useState('');
@@ -11,6 +19,7 @@ const SingleDonor = ({ donor }) => {
 
 
     useEffect(() => {
+
         fetch('division.json')
             .then(res => res.json())
             .then(data => {
@@ -27,6 +36,10 @@ const SingleDonor = ({ donor }) => {
                 setUpazilaName(data.find(d => d.id === upazila).name)
             })
     }, [division, district, upazila])
+
+    if (isLoading) {
+        return <Loading />
+    }
     return (
         <tr>
             <td>
@@ -50,7 +63,7 @@ const SingleDonor = ({ donor }) => {
                 <button class="btn btn-ghost btn-xs">
                     <AiFillEdit size={20} />
                 </button>
-                <button class="btn btn-ghost btn-xs">
+                <button onClick={() => dispatch(deleteDonor(_id))} class="btn btn-ghost btn-xs">
                     <AiFillDelete size={20} />
                 </button>
             </th>
