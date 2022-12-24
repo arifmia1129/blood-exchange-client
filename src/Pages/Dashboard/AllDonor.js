@@ -8,7 +8,6 @@ const AllDonor = () => {
     const { data, error, isLoading } = useGetDonorQuery(null);
 
 
-
     if (isLoading) {
         return <Loading />
     }

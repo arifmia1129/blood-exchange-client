@@ -21,7 +21,9 @@ const SingleDonor = ({ donor }) => {
     useEffect(() => {
 
         fetch('division.json')
-            .then(res => res.json())
+            .then(res => {
+                return res.json()
+            })
             .then(data => {
                 setDivisionName(data.find(d => d.id === division).name)
             })

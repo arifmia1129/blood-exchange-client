@@ -20,8 +20,16 @@ export const donorApi = createApi({
                 method: 'DELETE'
             }),
             invalidatesTags: ['donor']
+        }),
+        addDonor: builder.mutation({
+            query: (donor) => ({
+                url: `/donor`,
+                method: 'POST',
+                body: donor
+            }),
+            invalidatesTags: ['donor']
         })
     })
 })
 
-export const { useGetDonorQuery, useDeleteDonorMutation } = donorApi;
+export const { useGetDonorQuery, useDeleteDonorMutation, useAddDonorMutation } = donorApi;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
     return (
@@ -13,7 +13,8 @@ const Dashboard = () => {
             <div class="drawer-side">
                 <label for="my-drawer-2" class="drawer-overlay"></label>
                 <ul class="menu p-4 w-fit bg-base-100 text-base-content">
-                    <li><a>Sidebar Item 1</a></li>
+                    <li><Link to='/dashboard'>All Donor</Link></li>
+                    <li><Link to='/dashboard/add-donor'>Add Donor</Link></li>
                 </ul>
 
             </div>
