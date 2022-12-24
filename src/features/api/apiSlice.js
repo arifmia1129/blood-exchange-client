@@ -14,6 +14,12 @@ export const donorApi = createApi({
             }),
             providesTags: ['donor']
         }),
+        getSingleDonor: builder.query({
+            query: (id) => ({
+                method: 'GET',
+                url: `donor/${id}`,
+            })
+        }),
         deleteDonor: builder.mutation({
             query: (id) => ({
                 url: `/donor/${id}`,
@@ -28,8 +34,16 @@ export const donorApi = createApi({
                 body: donor
             }),
             invalidatesTags: ['donor']
-        })
+        }),
+        updateDonor: builder.mutation({
+            query: ({ id, donor }) => ({
+                url: `/donor/${id}`,
+                method: 'PUT',
+                body: donor
+            }),
+            invalidatesTags: ['donor']
+        }),
     })
 })
 
-export const { useGetDonorQuery, useDeleteDonorMutation, useAddDonorMutation } = donorApi;
+export const { useGetDonorQuery, useDeleteDonorMutation, useAddDonorMutation, useGetSingleDonorQuery, useUpdateDonorMutation } = donorApi;

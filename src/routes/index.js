@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AddDonor from '../Pages/Dashboard/AddDonor';
 import AllDonor from '../Pages/Dashboard/AllDonor';
 import Dashboard from '../Pages/Dashboard/Dashboard';
+import EditDonor from '../Pages/Dashboard/EditDonor';
 import Donors from '../Pages/Donor/Donors';
 import Navbar from '../Pages/Shared/Navbar';
 
@@ -15,6 +16,7 @@ const Index = () => {
                 <Route path='/dashboard' element={<Dashboard />} >
                     <Route index element={<AllDonor />} />
                     <Route path='add-donor' element={<AddDonor />} />
+                    <Route path='edit-donor/:id' element={<EditDonor />} />
                 </Route>
             </Routes>
         </BrowserRouter>

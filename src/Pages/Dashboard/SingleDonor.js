@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { AiFillDelete } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useDeleteDonorMutation } from '../../features/api/apiSlice';
 import Loading from '../Shared/Loading';
 
 const SingleDonor = ({ donor }) => {
     const { name, division, district, upazila, bloodGroup, contact, imageUrl, _id } = donor;
 
+    const navigate = useNavigate()
 
     const [deleteDonor, { isSuccess, isLoading, isError }] = useDeleteDonorMutation();
 
@@ -62,7 +64,7 @@ const SingleDonor = ({ donor }) => {
             </td>
             <td>{contact}</td>
             <th>
-                <button class="btn btn-ghost btn-xs">
+                <button onClick={() => navigate(`/dashboard/edit-donor/${_id}`)} class="btn btn-ghost btn-xs">
                     <AiFillEdit size={20} />
                 </button>
                 <button onClick={() => dispatch(deleteDonor(_id))} class="btn btn-ghost btn-xs">
